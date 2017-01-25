@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="" data-ng-app="AngularAppModule">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap CSS -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body class="container">
+    <div data-ng-controller="ClienteController as cliente">
+        <!--AQUINOS SETAMOS A VARIAVEIS DE INICIALIZAÇÃO
+        PODEMOS INFORMA-LAS DENTRO DE UM NG-INIT OU DENTRO DO PROPRIO SCOPE-->
+        <span data-ng-init="predicate = 'Id'; reserveOrderBy = true; predicateProduto = 'Valor'"></span>
+
+        <h1 class="text-center">{{cliente.titulo}}</h1>
+        
+        <input type="text" name="" id="input1/(\w+)/\u\1/g" class="form-control" placeholder="Insira um item para a busca"
+        data-ng-model="buscaCliente">
+        
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th data-ng-repeat="(key, value) in cliente.listaClientes[0]">{{key}}</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr data-ng-repeat="cliente in cliente.listaClientes | orderBy:predicate :reserveOrderBy | filter:buscaCliente">
+                    <td>{{cliente.Id}}</td>
+                    <td>{{cliente.Nome}}</td>
+                    <td>{{cliente.Email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <div data-ng-controller="ProdutoController as produto">
+        <span data-ng-init="reserveOrderBy = true; predicateProduto = 'Valor'"></span>
+        <h1 class="text-center">{{produto.titulo}}</h1>
+        
+        <input type="text" name="" id="input1/(\w+)/\u\1/g" class="form-control"  data-ng-model="busca" 
+        placeholder="Insira o nome do produto que esta buscando">
+        
+        <ul data-ng-repeat="produto in produto.listaProdutos | orderBy:predicateProduto:reserveOrderBy | filter:busca">
+            <li>{{produto.Name}}: R$ {{produto.Valor}}</li>
+        </ul>
+    </div>
+
+    <!--ANGULAR-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="scripts/app-3.js"></script>
+
+</body>
+
+</html>
