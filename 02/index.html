@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="" data-ng-app="AppAngular">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title Page</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    <h1 class="text-center">Filters Angular</h1>
+
+    <div class="row">
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-offset-3 well">
+            <form>
+                <legend>Filters in Angular</legend>
+                <div class="form-group">
+                    <label>{{filtro01 | limitTo:10}}</label>
+                    <input type="text" class="form-control" id="" data-ng-model="filtro01" placeholder="Insira seu nome com no maximo 10 letras">
+                </div>
+                <div class="form-group">
+                    <label>{{filtro02 | currency}}</label>
+                    <input type="number" class="form-control" id="" data-ng-model="filtro02" placeholder="Insira seu salario sem casas decimais">
+                </div>
+                <div class="form-group">
+                    <label>{{filtro03 | uppercase}}</label>
+                    <input type="text" class="form-control" id="" data-ng-model="filtro03" placeholder="Seu texto em letra maiuscula">
+                </div>
+                <div class="form-group">
+                    <label>{{filtro04 | lowercase}}</label>
+                    <input type="text" class="form-control" id="" data-ng-model="filtro04" placeholder="Seu texto em letras minusculas">
+                </div>
+            </form>
+        </div>
+        <br>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-offset-3 well">
+            <form>
+                <legend>Custon Filters in Angular</legend>
+                <div class="form-group">
+                    <label>{{customFilter01 | VerifiedEighteenAge }}</label>
+                    <input type="number" class="form-control" id="" data-ng-model="customFilter01" placeholder="Insira seu nome com no maximo 10 letras">
+                </div>
+                <div class="form-group">
+                    <label>{{customFilter02 | VerifiedHours }}</label>
+                    <input type="number" min="00" max="24" class="form-control" id="" data-ng-model="customFilter02" placeholder="Insira um Horario">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!--ANGULAR-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="script/app.js"></script>
+
+</body>
+
+</html>
