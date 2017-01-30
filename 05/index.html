@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="" data-ng-app="AngularAppModule">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap CSS -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body class="container">
+    <div data-ng-controller="ClienteController as cliente">
+        <!--AQUINOS SETAMOS A VARIAVEIS DE INICIALIZAÇÃO
+        PODEMOS INFORMA-LAS DENTRO DE UM NG-INIT OU DENTRO DO PROPRIO SCOPE-->
+        <span data-ng-init="predicate = 'Id'; reserveOrderBy = true; predicateProduto = 'Valor';reverse = true" ></span>
+
+        <h1 class="text-center">{{cliente.titulo}}</h1>
+
+        <input type="text" name="" id="input1/(\w+)/\u\1/g" class="form-control" placeholder="Insira um item para a busca" data-ng-model="buscaCliente">
+
+        <br>
+        <h5 class="text-uppercase">Adicione Novos Clientes:</h3>
+            <div class="row">
+                <div class=col-md-6>
+                    <label>Nome:</label>
+                    <input type="text" data-ng-model="cliente.form.Nome" placeholder="Insira o Nome do Cliente" class="form-control">
+                </div>
+                <div class=col-md-6>
+                    <label>Email</label>
+                    <input type="email" data-ng-model="cliente.form.Email" placeholder="Insira o E-Mail do Cliente" class="form-control">
+                </div>
+            </div>
+            <br>
+            <button type="button" class="btn btn-block btn-primary" data-ng-click="cliente.AdicionarCliente(cliente.form)">Adicionar Cliente</button>
+
+            <br>
+            <br>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th data-ng-repeat="(key, value) in cliente.listaClientes[0]"><a href="" data-ng-click="fieldOrder = 'Id'; booleanOrderReserve = true">{{key}}</a></td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr data-ng-repeat="cliente in cliente.listaClientes | orderBy:fieldOrder">
+                        <td>{{cliente.Id}}</td>
+                        <td>{{cliente.Nome}}</td>
+                        <td>{{cliente.Email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+
+    <br>
+
+    <div data-ng-controller="ProdutoController as produto">
+        <span data-ng-init="reserveOrderBy = true; predicateProduto = 'Valor'"></span>
+        <h1 class="text-center">{{produto.titulo}}</h1>
+
+        <input type="text" name="" id="input1/(\w+)/\u\1/g" class="form-control" data-ng-model="busca" placeholder="Insira o nome do produto que esta buscando">
+
+        <ul data-ng-repeat="produto in produto.listaProdutos | orderBy:predicateProduto:reserveOrderBy | filter:busca">
+            <li>{{produto.Name}}: R$ {{produto.Valor}}</li>
+        </ul>
+    </div>
+
+    <!--ANGULAR-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="scripts/app-5.js"></script>
+
+</body>
+
+</html>
