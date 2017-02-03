@@ -23,7 +23,10 @@
             vmcliente.AdicionarCliente = function(dadosCliente){
                 debugger;
                 dadosCliente.Id = vmcliente.listaClientes.length + 1; 
-                vmcliente.listaClientes.push(dadosCliente)
+                vmcliente.listaClientes.push(angular.copy(dadosCliente));
+
+                //LIMPA OS CAMPOS DE BUSCA DO NAVEGADOR
+                ClearInputsFields();
             }
         }
 
@@ -36,6 +39,13 @@
                 {Name: "Produto 3", Valor: 30},
                 {Name: "Produto 4", Valor: 40},
             ]
+        }
+
+        function ClearInputsFields(){
+            var inputsFields = document.querySelectorAll("input[type='text'], input[type='email']");
+            inputsFields.forEach(function(inputsField) {
+                 inputsField.value = '';
+            }, this);
         }
 
         //AQUI NOS INJETAMOS O SCOPE
