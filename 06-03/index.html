@@ -55,7 +55,8 @@
                 <thead>
                     <tr>
                         <th>REMOVER</th>
-                        <th data-ng-repeat="(key, value) in cliente.listaClientes[0]" data-ng-bind="key | uppercase"></th>
+                        <th>NOME</th>
+                        <th>E-MAIL</th>
                     </tr>
                 </thead>
 
@@ -65,7 +66,8 @@
                             <input type="checkbox" id="cliente-{{$index}}" name="cliente-{{$index}}" data-ng-model="clienteItem.selecionado">
                             <label for="cliente-{{$index}}"></label>
                         </td>
-                        <td data-ng-repeat="(key, value) in clienteItem" data-ng-bind="value"></td>
+                        <td data-ng-bind="clienteItem.Nome"></td>
+                        <td data-ng-bind="clienteItem.Email"></td>
                     </tr>
                 </tbody>
             </table>
