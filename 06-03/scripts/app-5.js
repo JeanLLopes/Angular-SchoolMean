@@ -20,7 +20,6 @@
             ]
 
             vmcliente.AdicionarCliente = function(dadosCliente){
-                debugger;
                 dadosCliente.Id = vmcliente.listaClientes.length + 1; 
                 vmcliente.listaClientes.push(angular.copy(dadosCliente));
 
@@ -30,7 +29,6 @@
 
             vmcliente.Remover = function(cliente){
                 vmcliente.listaClientes = cliente.filter(function(item){
-                    debugger;
                     return !item.selecionado
                 })
             }
