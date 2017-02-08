@@ -1,10 +1,12 @@
 (function () {
     angular
-        .module('AppModule', [])
+        .module('AppModule',['ngAnimate'])
         .controller('ControllerExemploAnimate', ControllerExemploAnimate)
 
     function ControllerExemploAnimate() {
-        
+         var vmExemploAnimate = this;
+
+         vmExemploAnimate.titlePage = "Angular - Angular Animate"   
     }
-})
+})();
 
