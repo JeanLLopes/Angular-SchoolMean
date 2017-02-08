@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="AppModule">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+</head>
+
+<body data-ng-controller="ControllerExemploAnimate as vmExemploAnimate" class="container">
+
+    <input type="checkbox" id="inputMostrar" data-ng-model="checkAnimate" />
+    <label>Mostrar Animate</label>
+    <br>
+    <p>Valor do Checkbox {{checkAnimate}}</p>
+    <br>
+    <div class="message" data-ng-show="checkAnimate"></div>
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <!--ANGULAR-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="scripts/app-exemplo,js"></script>
+</body>
+
+</html>
