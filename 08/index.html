@@ -9,13 +9,15 @@
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <style>
+        .animate{
+            transition: all linear 0.5s
+        }
+        .ng-hide{
+            height: 0
+        }
+    </style>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
 </head>
 
 <body class="container">
@@ -39,8 +41,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" class="btn btn-large waves-effect blue waves-light col s6" data-ng-click="cliente.AdicionarCliente(cliente.form)">Adicionar Cliente</button>
-                    <button type="button" class="btn btn-large waves-effect green waves-light col s6" data-ng-click="cliente.Salvar(cliente.form)">Atualizar</button>
+                    <button type="button" class="btn animate btn-large waves-effect blue waves-light col s12" data-ng-click="cliente.AdicionarCliente(cliente.form)">Adicionar Cliente</button>
+                    <button type="button" class="btn animate btn-large waves-effect green waves-light col s12" data-ng-click="cliente.Salvar(cliente.form)" data-ng-hide="!cliente.editando">Atualizar</button>
                 </div>
         </section>
 
@@ -88,6 +90,9 @@
     <!--ANGULAR-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="scripts/app-5.js"></script>
+
+    <!--ANGULAR ANIMATE-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-animate.min.js"></script>
 
 </body>
 

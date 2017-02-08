@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('AngularAppModule',[])
+        .module('AngularAppModule',['ngAnimate'])
         .controller('ClienteController', ClienteController)
 
         function ClienteController(){
@@ -18,6 +18,11 @@
                 {Id: 3, Nome: "Vitor 3", Email: "vitor@gmail.com"},
                 {Id: 4, Nome: "Paulo 4", Email: "paulo@gmail.com"},
             ]
+
+
+            //SETA UM VALOR PARA O EDITAR
+            vmcliente.editando = false; 
+
 
             vmcliente.AdicionarCliente = function(dadosCliente){
                 dadosCliente.Id = vmcliente.listaClientes.length + 1; 
@@ -44,6 +49,8 @@
                 //DEVEMOS TAMBEM RECUPERAR O index, ASSIM PODEMOS RECUPERAR ESSE ITEM QUANDO NOS EDITAR O ELEMENTOS
                 vmcliente.form.index = index;
 
+                //SETA UM VALOR PARA O EDITAR
+                vmcliente.editando = true; 
             }
 
 
@@ -66,6 +73,9 @@
 
                 //DEVEMOS LIMPAR PARA NÃO DAR ERRO NO 
                 vmcliente.form ={};
+
+                //SETA UM VALOR PARA O EDITAR
+                vmcliente.editando = false; 
             }
         }
 
