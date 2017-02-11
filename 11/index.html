@@ -16,6 +16,8 @@
         .ng-hide{
             height: 0
         }
+        body select{display: inline-block}
+        [disabled]{background-color: #ccc !important}
     </style>
 
 </head>
@@ -32,6 +34,13 @@
             <h5 class="text-uppercase">Adicione Novos Clientes:</h3>
                 <div class="row">
                     <div class=col-md-6>
+                        <label>Sexo:</label>
+                        <select data-ng-model="cliente.form.Sexo" class="form-control" data-ng-options="itemListaSexo.Descricao as itemListaSexo.Descricao for itemListaSexo in cliente.listaSexos">
+                                <option value="">Selecione um Sexo</option>
+                        </select>
+                    </div>
+                    <br>    
+                    <div class=col-md-6>
                         <label>Nome:</label>
                         <input type="text" data-ng-model="cliente.form.Nome" placeholder="Insira o Nome do Cliente" class="form-control">
                     </div>
@@ -41,8 +50,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" class="btn animate btn-large waves-effect blue waves-light col s12" data-ng-click="cliente.AdicionarCliente(cliente.form)">Adicionar Cliente</button>
-                    <button type="button" class="btn animate btn-large waves-effect green waves-light col s12" data-ng-click="cliente.Salvar(cliente.form)" data-ng-hide="!cliente.editando">Atualizar</button>
+                    <button type="button" data-ng-disabled="cliente.editando" class="btn animate btn-large waves-effect blue waves-light col s12" data-ng-click="cliente.AdicionarCliente(cliente.form)">Adicionar Cliente</button>
+                    <button type="button" data-ng-disabled="!cliente.editando" class="btn animate btn-large waves-effect green waves-light col s12" data-ng-click="cliente.Salvar(cliente.form)" data-ng-hide="!cliente.editando">Atualizar</button>
                 </div>
         </section>
 
