@@ -27,8 +27,8 @@
         }
         /*AQUI NOS SETAMOS A CLASSE CSS RESPONSAVEL PELA COR DA VALIDAÇÃO DOS ITENS */
         
-        .ng-invalid {
-            background-color: red
+        .invalid {
+            background-color: darkred
         }
     </style>
 
@@ -45,7 +45,7 @@
         <section>
 
             <!--PARA USAR AS VALIDAÇÕES DEVEMOS USAR UM FOMR HTML E AS VALIDAÇÕES DO HTML5-->
-            <form>
+            <form name="clienteForm">
                 <h5 class="text-uppercase">Adicione Novos Clientes:</h3>
                     <div class="row">
                         <div class=col-md-6>
@@ -55,14 +55,24 @@
                         </select>
                         </div>
                         <br>
-                        <div class=col-md-6>
+
+                        <!--PARA EFETUAR AS VALIDAÇÕES COM AS CLASS NOS DEVEMOS COLOCAR NO MESMO NOME DO FORM, E APOS ISSO 
+                        APLICAR O ATRIBUTO name PARA O CAMPO FIELD A SER APLICADO A VALIDAÇÃO
+                        
+                        VER AS CLASSES un-touched E pristine
+                        
+                        PODEMOS TAMBEM ADICIONAR O TRATAMENTO DE pritine, ASSIM COMO FORMULARIO SOMENTE VAI APLICAR A 
+                        VALIDAÇÃO APOS , NOS INSERIRMOS ALGUMA INFORMAÇAO NO CAMPO-->
+
+                        
+                        <div class="col-md-6" data-ng-class="{'invalid': clienteForm.Nome.$invalid}">
                             <label>Nome:</label>
                             <!--DEVEMOS TAMBEM SETAR O CAMPO COMO REQUIRED-->
-                            <input type="text" data-ng-model="cliente.form.Nome" placeholder="Insira o Nome do Cliente" class="form-control" required>
+                            <input type="text" name="Nome" data-ng-model="cliente.form.Nome" placeholder="Insira o Nome do Cliente" class="form-control" required>
                         </div>
-                        <div class=col-md-6>
+                        <div class="col-md-6"  data-ng-class="{'invalid': clienteForm.Email.$invalid}">
                             <label>Email</label>
-                            <input type="email" data-ng-model="cliente.form.Email" placeholder="Insira o E-Mail do Cliente" class="form-control"  required>
+                            <input type="email" name="Email" data-ng-model="cliente.form.Email" placeholder="Insira o E-Mail do Cliente" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
