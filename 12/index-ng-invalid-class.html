@@ -65,12 +65,12 @@
                         VALIDAÇÃO APOS , NOS INSERIRMOS ALGUMA INFORMAÇAO NO CAMPO-->
 
                         
-                        <div class="col-md-6" data-ng-class="{'invalid': clienteForm.Nome.$invalid}">
+                        <div class="col-md-6" data-ng-class="{'invalid': clienteForm.Nome.$invalid && !clienteForm.Nome.$pristine}">
                             <label>Nome:</label>
                             <!--DEVEMOS TAMBEM SETAR O CAMPO COMO REQUIRED-->
                             <input type="text" name="Nome" data-ng-model="cliente.form.Nome" placeholder="Insira o Nome do Cliente" class="form-control" required>
                         </div>
-                        <div class="col-md-6"  data-ng-class="{'invalid': clienteForm.Email.$invalid}">
+                        <div class="col-md-6"  data-ng-class="{'invalid': clienteForm.Email.$invalid && !clienteForm.Email.$pristine}">
                             <label>Email</label>
                             <input type="email" name="Email" data-ng-model="cliente.form.Email" placeholder="Insira o E-Mail do Cliente" class="form-control" required>
                         </div>
