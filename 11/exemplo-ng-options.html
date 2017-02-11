@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="AngularOption">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+    <style>
+        html body select {display: inline-block !important};
+    </style>
+</head>
+
+<body>
+    <section class="container" data-ng-controller="AngularOptionController as VmAngularOption">
+        <hgroup class="center">
+            <h4>Diretiva NG-OPTION</h1>
+            <h6>Maneiras de Usar o ng-option</h1>
+        </hgroup>
+        <br>
+        <div class="container">
+            <p><strong>LABEL FOR IN ARRAY</strong></p>
+            <small>Este retorna o objeto inteiro</small>
+            <select data-ng-model="VmAngularOption.lista_dados" data-ng-options="item.Nome for item in VmAngularOption.listaClientes">
+                <option value="">Selecione um Cliente</option>
+            </select>
+            <p class="green">Resultado: {{VmAngularOption.lista_dados}}</p>
+        </div>
+        <br>
+        <div class="container">
+            <p><strong>SELECT AS VALUE LABEL IN ARRAY</strong></p>
+            <small>Este é o mais usado no mercado</small>
+            <select data-ng-model="VmAngularOption.lista_dados_com_valor" data-ng-options="item.Email as item.Nome for item in VmAngularOption.listaClientes">
+                <option value="">Selecione um Cliente</option>
+            </select>
+            <p class="green">Resultado: {{VmAngularOption.lista_dados_com_valor | lowercase}}</p>
+        </div>
+        <br>
+        <div class="container">
+            <p><strong>SELECT AS VALUE LABEL IN ARRAY COM VALOR INICIAL</strong></p>
+            <small>Aqui no já iniciamos o option com um valor inicial setado</small>
+            <select data-ng-model="VmAngularOption.lista_dados_com_valor_inicial" data-ng-options="item.Email as item.Nome for item in VmAngularOption.listaClientes">
+                <option value="">Selecione um Cliente</option>
+            </select>
+            <p class="green">Resultado: {{VmAngularOption.lista_dados_com_valor_inicial | lowercase}}</p>
+        </div>
+        <br>
+        <div class="container">
+            <p><strong>SELECT AS VALUE LABEL IN ARRAY USANDO GROUPY BY</strong></p>
+            <small>Aqui nos podemos selecionar um cliente e agrupa-lo por um tipo especifico</small>
+            <select data-ng-model="VmAngularOption.lista_dados_groupby" data-ng-options="item.Nome group by item.Tipo for item in VmAngularOption.listaClientes">
+                <option value="">Selecione um Cliente</option>
+            </select>
+            <p class="green">Resultado: {{VmAngularOption.lista_dados_groupby.Email | lowercase}}</p>
+        </div>
+        <br>
+        <div class="container">
+            <p><strong>SELECT AS VALUE LABEL IN ARRAY USANDO GROUPY BY E DISABLE</strong></p>
+            <small>Aqui nos podemos selecionar um cliente e agrupa-lo por um tipo especifico e desabilitando os itens excluidos</small>
+            <select data-ng-model="VmAngularOption.lista_dados_groupby_disable" data-ng-options="item.Nome group by item.Tipo disable when !item.Ativo for item in VmAngularOption.listaClientes">
+                <option value="">Selecione um Cliente</option>
+            </select>
+            <p class="green">Resultado: {{VmAngularOption.lista_dados_groupby_disable.Email | lowercase}}</p>
+        </div>
+        <br>
+    </section>
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <!--ANGULAR-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="scripts/exemplo-ng-options.js"></script>
+
+</body>
+
+</html>
