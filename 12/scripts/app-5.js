@@ -81,6 +81,17 @@
 
             //SETA UM VALOR PARA O EDITAR
             vmcliente.editando = false;
+
+
+
+
+            //CLASS 12
+            //AQUI NOS CRIAMOS UM METODO QUE VAISER RESPONSAVEL POR CADASTRA MEU CLIENTE
+            //USANDO O ng-submit
+            vmcliente.FormSubmit = function(dadosUser){
+                debugger;
+                AdicionarCliente(dadosUser)
+            }
         }
     }
 

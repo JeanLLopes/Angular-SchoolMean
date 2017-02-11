@@ -25,11 +25,19 @@
         [disabled] {
             background-color: #ccc !important
         }
+        
+        
+                .dirty {
+            background-color: #ccc
+        }
+
+        
         /*AQUI NOS SETAMOS A CLASSE CSS RESPONSAVEL PELA COR DA VALIDAÇÃO DOS ITENS */
         
         .invalid {
             background-color: darkred
         }
+        
     </style>
 
 </head>
@@ -44,7 +52,9 @@
 
         <section>
 
-            <!--PARA USAR AS VALIDAÇÕES DEVEMOS USAR UM FOMR HTML E AS VALIDAÇÕES DO HTML5-->
+            <!--PARA USAR AS VALIDAÇÕES DEVEMOS USAR UM FOMR HTML E AS VALIDAÇÕES DO HTML5
+            
+            AGORA PODEMOS COLOCAR TAMBEM O ITEM DE SUBMIT-->
             <form name="clienteForm">
                 <h5 class="text-uppercase">Adicione Novos Clientes:</h3>
                     <div class="row">
@@ -62,17 +72,23 @@
                         VER AS CLASSES un-touched E pristine
                         
                         PODEMOS TAMBEM ADICIONAR O TRATAMENTO DE pritine, ASSIM COMO FORMULARIO SOMENTE VAI APLICAR A 
-                        VALIDAÇÃO APOS , NOS INSERIRMOS ALGUMA INFORMAÇAO NO CAMPO-->
-
+                        VALIDAÇÃO APOS , NOS INSERIRMOS ALGUMA INFORMAÇAO NO CAMPO
                         
-                        <div class="col-md-6" data-ng-class="{'invalid': clienteForm.Nome.$invalid && !clienteForm.Nome.$pristine}">
+                        
+                        COLOCAMOS TAMBEM UMA TRATATIVA PARA dirty QUE NADA MAIS É QUANDO UM CAMPO É PREENCHIDO
+                        NO CSS DEVEMOS COLOCAR OS CAMPOS NA ORDEM CORRETA-->
+
+
+                        <div class="col-md-6" data-ng-class="{'invalid': clienteForm.Nome.$invalid && !clienteForm.Nome.$pristine, 'dirty': !clienteForm.Nome.$pristine}">
                             <label>Nome:</label>
                             <!--DEVEMOS TAMBEM SETAR O CAMPO COMO REQUIRED-->
-                            <input type="text" name="Nome" data-ng-model="cliente.form.Nome" placeholder="Insira o Nome do Cliente" class="form-control" required>
+                            <input type="text" name="Nome" data-ng-model="cliente.form.Nome" placeholder="Insira o Nome do Cliente" class="form-control"
+                                required>
                         </div>
-                        <div class="col-md-6"  data-ng-class="{'invalid': clienteForm.Email.$invalid && !clienteForm.Email.$pristine}">
+                        <div class="col-md-6" data-ng-class="{'invalid': clienteForm.Email.$invalid && !clienteForm.Email.$pristine, 'dirty': !clienteForm.Nome.$pristine}}">
                             <label>Email</label>
-                            <input type="email" name="Email" data-ng-model="cliente.form.Email" placeholder="Insira o E-Mail do Cliente" class="form-control" required>
+                            <input type="email" name="Email" data-ng-model="cliente.form.Email" placeholder="Insira o E-Mail do Cliente" class="form-control"
+                                required>
                         </div>
                     </div>
                     <div class="row">
