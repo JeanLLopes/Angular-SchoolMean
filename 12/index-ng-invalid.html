@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="" data-ng-app="AngularAppModule">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <style>
+        .animate {
+            transition: all linear 0.5s
+        }
+        
+        .ng-hide {
+            height: 0
+        }
+        
+        body select {
+            display: inline-block
+        }
+        
+        [disabled] {
+            background-color: #ccc !important
+        }
+        /*AQUI NOS SETAMOS A CLASSE CSS RESPONSAVEL PELA COR DA VALIDAÇÃO DOS ITENS */
+        
+        .ng-invalid {
+            background-color: red
+        }
+    </style>
+
+</head>
+
+<body class="container">
+    <div data-ng-controller="ClienteController as cliente">
+        <!--AQUINOS SETAMOS A VARIAVEIS DE INICIALIZAÇÃO
+        PODEMOS INFORMA-LAS DENTRO DE UM NG-INIT OU DENTRO DO PROPRIO SCOPE-->
+        <span data-ng-init="predicate = 'Id'; reserveOrderBy = true; predicateProduto = 'Valor';reverse = true"></span>
+        <h1 class="text-center">{{cliente.titulo}}</h1>
+
+
+        <section>
+
+            <!--PARA USAR AS VALIDAÇÕES DEVEMOS USAR UM FOMR HTML E AS VALIDAÇÕES DO HTML5
+            DEVEMOS TAMBEM PASSAR UM name PARA O FORM
+            NO CASO ABAIXO ELE SOMENTE VAI VALIDAR NOSSO CAMPO QUANDO NO COLOCARMOS NOME E EMAIL-->
+            <form name="clienteForm">
+                <h5 class="text-uppercase">Adicione Novos Clientes:</h3>
+                    <div class="row">
+                        <div class=col-md-6>
+                            <label>Sexo:</label>
+                            <select data-ng-model="cliente.form.Sexo" class="form-control" data-ng-options="itemListaSexo.Descricao as itemListaSexo.Descricao for itemListaSexo in cliente.listaSexos">
+                                <option value="">Selecione um Sexo</option>
+                        </select>
+                        </div>
+                        <br>
+                        <div class=col-md-6>
+                            <label>Nome:</label>
+                            <!--DEVEMOS TAMBEM SETAR O CAMPO COMO REQUIRED-->
+                            <input type="text" data-ng-model="cliente.form.Nome" placeholder="Insira o Nome do Cliente" class="form-control" required>
+                        </div>
+                        <div class=col-md-6>
+                            <label>Email</label>
+                            <input type="email" data-ng-model="cliente.form.Email" placeholder="Insira o E-Mail do Cliente" class="form-control"  required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" data-ng-disabled="cliente.editando" class="btn animate btn-large waves-effect blue waves-light col s12"
+                            data-ng-click="cliente.AdicionarCliente(cliente.form)">Adicionar Cliente</button>
+                            <button type="button" data-ng-disabled="!cliente.editando" class="btn animate btn-large waves-effect green waves-light col s12"
+                                data-ng-click="cliente.Salvar(cliente.form)" data-ng-hide="!cliente.editando">Atualizar</button>
+                    </div>
+            </form>
+        </section>
+
+        <section class="row">
+            <div class="col-md-12">
+                <input type="text" name="" id="input1/(\w+)/\u\1/g" class="form-control" placeholder="Insira um item para a busca" data-ng-model="buscaCliente">
+            </div>
+        </section>
+
+        <section class="row">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>REMOVER</th>
+                        <th>NOME</th>
+                        <th>E-MAIL</th>
+                        <th>EDITAR</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr data-ng-repeat="clienteItem in cliente.listaClientes | filter: buscaCliente">
+                        <td>
+                            <input type="checkbox" id="cliente-{{$index}}" name="cliente-{{$index}}" data-ng-model="clienteItem.selecionado">
+                            <label for="cliente-{{$index}}"></label>
+                        </td>
+                        <td data-ng-bind="clienteItem.Nome"></td>
+                        <td data-ng-bind="clienteItem.Email"></td>
+                        <td>
+                            <button data-ng-click="cliente.Editar(clienteItem, $index)" class="btn btn-large waves-effect blue waves-light col s6">Editar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="row">
+            <button type="button" class="btn btn-large red waves-effect waves-light col s12" data-ng-click="cliente.Remover(cliente.listaClientes)">REMOVER DA LISTA</button>
+        </section>
+
+    </div>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <!--ANGULAR-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="scripts/app-5.js"></script>
+
+    <!--ANGULAR ANIMATE-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-animate.min.js"></script>
+
+</body>
+
+</html>
