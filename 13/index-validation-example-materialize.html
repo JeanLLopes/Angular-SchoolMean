@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="" data-ng-app="AngularModule">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+</head>
+
+<body>
+    <main class="container" data-ng-controller="AngularNgMessageController as VmAngularNgMessageController">
+        <form name="userForm" novalidate>
+            <div class="row">
+                <div class="col s6">
+                    <label for="">Nome: </label>
+                    <input type="text" name="NameClient" data-ng-model="VmAngularNgMessageController.Form.NameClient" data-ng-minlength="3" data-ng-maxlength="50"
+                        required>
+                        <div data-ng-messages="userForm.NameClient.$error">
+                            <p ng-message="minlength" class="red">Seu nome é muito curto.</p>
+                            <p ng-message="maxlength" class="red">Seu nome é muito grande.</p>
+                            <p ng-message="required" class="red">Campo Obrigatorio.</p>
+                        </div>
+                </div>
+                <div class="col s6">
+                    <label for="">Email: </label>
+                    <input type="email" name="EmailClient" data-ng-model="VmAngularNgMessageController.Form.EmailClient" data-ng-minlength="3" data-ng-maxlength="50"
+                        required>
+                        <div data-ng-messages="userForm.EmailClient.$error">
+                            <p ng-message="minlength" class="red">Seu Email é muito pequeno.</p>
+                            <p ng-message="maxlength" class="red">Seu Email é muito grande.</p>
+                            <p ng-message="required" class="red">Campo Obrigatorio.</p>
+                            <p ng-message="email" class="red">Informe um e-mail válido</p>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Enviar Informações
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+    <!--ANGULAR-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.6.2/angular-messages.min.js"></script>
+    <script src="scripts/app-validation-example-materialize.js"></script>
+</body>
+
+</html>
