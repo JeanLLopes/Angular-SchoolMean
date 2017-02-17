@@ -11,36 +11,72 @@
 
 <body>
     <main class="container" data-ng-controller="AngularNgMessageController as VmAngularNgMessageController">
-        <form name="userForm" novalidate>
+        <form name="userForm" novalidate data-ng-submit="VmAngularNgMessageController.SubmitForm(VmAngularNgMessageController.Form)">
             <div class="row">
                 <div class="col s6">
                     <label for="">Nome: </label>
                     <input type="text" name="NameClient" data-ng-model="VmAngularNgMessageController.Form.NameClient" data-ng-minlength="3" data-ng-maxlength="50"
-                        required>
-                        <div data-ng-messages="userForm.NameClient.$error">
+                        required data-ng-pattern="/[A-Za-z]/" autofocus="autofocus">
+                        <div data-ng-messages="userForm.NameClient.$error" data-ng-if="!userForm.NameClient.$pristine">
+                            <!--data-ng-if="userForm.NameClient.$touched"-->
                             <p ng-message="minlength" class="red">Seu nome é muito curto.</p>
                             <p ng-message="maxlength" class="red">Seu nome é muito grande.</p>
                             <p ng-message="required" class="red">Campo Obrigatorio.</p>
+                            <p ng-message="pattern" class="red">Favor insira apenas letras</span>
+                        </div>
+                        <div data-ng-if="userForm.NameClient.$valid">
+                            <p class="green">Campo NOME OK</p>
+                        </div>
+                        <!--<div data-ng-if="userForm.NameClient.$invalid && VmAngularNgMessageController.Form.NameClient == ''">
+                            <p class="red">Preencha o Campo Nome</p>
+                        </div>-->
+                        <br>
+                        <div>
+                            <p>AQUI NOS PODEMOS OBSERVAR QUAIS OS ERROS DO ngmessages</p>
+                            <code>userForm.NameClient.$error = {{userForm.NameClient.$error}}</code>
                         </div>
                 </div>
                 <div class="col s6">
                     <label for="">Email: </label>
-                    <input type="email" name="EmailClient" data-ng-model="VmAngularNgMessageController.Form.EmailClient" data-ng-minlength="3" data-ng-maxlength="50"
-                        required>
-                        <div data-ng-messages="userForm.EmailClient.$error">
+                    <input type="email" name="EmailClient" data-ng-model="VmAngularNgMessageController.Form.EmailClient" data-ng-minlength="3"
+                        data-ng-maxlength="50" required>
+                        <div data-ng-messages="userForm.EmailClient.$error" data-ng-if="!userForm.EmailClient.$pristine">
+                            <!--data-ng-if="userForm.EmailClient.$touched"-->
                             <p ng-message="minlength" class="red">Seu Email é muito pequeno.</p>
                             <p ng-message="maxlength" class="red">Seu Email é muito grande.</p>
                             <p ng-message="required" class="red">Campo Obrigatorio.</p>
                             <p ng-message="email" class="red">Informe um e-mail válido</p>
                         </div>
+                        <div data-ng-if="userForm.EmailClient.$valid">
+                            <p class="green">Campo EMAIL OK</p>
+                        </div>
+                        <!--<div data-ng-if="userForm.EmailClient.$invalid">
+                            <p class="red">Preencha o Campo Email</p>
+                        </div>-->
+
+                        <br>
+                        <div>
+                            <p>AQUI NOS PODEMOS OBSERVAR QUAIS OS ERROS DO ngmessages</p>
+                            <code>userForm.EmailClient.$error = {{userForm.EmailClient.$error}}</code>
+                        </div>
                 </div>
             </div>
             <div class="row">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Enviar Informações
+                <button data-ng-disabled="userForm.$invalid" class="btn waves-effect waves-light" type="submit" name="action">Enviar Informações
                     <i class="material-icons right">send</i>
                 </button>
             </div>
+
+            <br>
+            <p>
+                AQUI NOS PODEMOS OBSERVAR QUE O MODELO SOMENTE É PREENCHIDO QUANDO AS INFORMAÇÕES SÃO VALIDADAS
+                PELO NGMESSAGES:
+            </p>
+            <code>{{VmAngularNgMessageController.Form}}</code>
         </form>
+        <br>
+        <br>
+        <p>Lista de Clientes Cadastrados: {{VmAngularNgMessageController.db}}</p>
     </main>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
